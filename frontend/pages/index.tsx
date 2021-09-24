@@ -3,11 +3,9 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-import Today from './Today';
-import Precipitation from './Precipitation';
-import Forecast from './Forecast';
-import Footer from '../components/Footer';
-import Link from 'next/link';
+import Today from '../components/Today';
+import Precipitation from '../components/Precipitation';
+import Forecast from './../components/Forecast';
 import { WeatherContext } from '../components/contexts/WeatherContext';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -25,11 +23,15 @@ export async function getServerSideProps() {
   };
 }
 const Home: NextPage = ({ data }) => {
-  console.log(data);
   return (
     <WeatherContext.Provider value={data}>
       <h1>Landing</h1>
-      <Footer />
+
+      <div className='screen-container'>
+        <Today />
+        <Forecast />
+        <Precipitation />
+      </div>
     </WeatherContext.Provider>
   );
 };
