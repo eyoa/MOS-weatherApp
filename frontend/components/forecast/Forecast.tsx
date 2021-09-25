@@ -1,6 +1,6 @@
 import { NextPage } from "next"
-import { useWeather } from "../components/contexts/WeatherContext"
-import DailyTemp from "../components/DailyTemp"
+import { useWeather } from "../contexts/WeatherContext"
+import DailyTemp from "./DailyTemp"
 
 const weekdays = new Array("Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat")
 
@@ -13,7 +13,7 @@ const Forecast: NextPage = () => {
   const data = useWeather()
 
   const timezone = data.timezone
-  const daily = data.daily
+  const daily = data.daily.slice(1)
 
   return (
     <>
