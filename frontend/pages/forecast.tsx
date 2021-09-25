@@ -1,5 +1,4 @@
 import { NextPage, GetServerSideProps, InferGetServerSidePropsType } from "next"
-import { Key } from "react"
 import DailyTemp from "../components/DailyTemp"
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY
@@ -78,7 +77,7 @@ const Forecast: NextPage = ({
   return (
     <>
       <h1>{timezone}</h1>
-      {daily.map((day: { dt: number; temp: { max: number; min: number }; td: number }) => (
+      {daily.map((day: { dt: number; temp: { max: number; min: number } }) => (
         <DailyTemp
           key={day.dt}
           maxTemp={day.temp.max}
