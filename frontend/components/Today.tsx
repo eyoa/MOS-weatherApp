@@ -1,19 +1,8 @@
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-const lat = '33.44';
-const lon = '-94.04';
-const defaultEndpoint = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${apiKey}&units=metric`;
+import { useWeather } from '../components/contexts/WeatherContext';
 
-export async function getServerSideProps() {
-  const res = await fetch(defaultEndpoint);
-  const data = await res.json();
-  return {
-    props: {
-      data
-    }
-  };
-}
-
-export default function Today({ data }) {
+export default function Today() {
+  const data = useWeather();
+  console.log(`today page data is ${data}`);
   const daytemps = data.daily[0].temp;
   return (
     <>
