@@ -1,20 +1,8 @@
-const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-const lat = '33.44';
-const lon = '-94.04';
+import { useWeather } from './contexts/WeatherContext';
 
-const defaultEndpoint = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+export default function Precipitation() {
+  const data = useWeather();
 
-export async function getServerSideProps() {
-  const res = await fetch(defaultEndpoint);
-  const data = await res.json();
-  return {
-    props: {
-      data
-    }
-  };
-}
-
-export default function precipitation({ data }) {
   return (
     <>
       <h1>Precipitation Page</h1>

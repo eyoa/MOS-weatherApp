@@ -1,26 +1,39 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 
-// API Key call and data sent to props
+import Today from '../components/Today';
+import Precipitation from '../components/Precipitation';
+import Forecast from './../components/Forecast';
+import { WeatherContext } from '../components/contexts/WeatherContext';
+
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-const query = 'Kansas';
-const defaultEndpoint = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=imperial`;
+const lat = '33.44';
+const lon = '-94.04';
+const defaultEndpoint = `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${apiKey}&units=metric`;
 
 export async function getServerSideProps() {
   const res = await fetch(defaultEndpoint);
   const data = await res.json();
   return {
     props: {
-      data,
-    },
+      data
+    }
   };
 }
+const Home: NextPage = ({ data }) => {
+  return (
+    <WeatherContext.Provider value={data}>
+      <h1>Landing</h1>
 
-const Home: NextPage = data => {
-  console.log(data);
-  return <h1>Landing</h1>;
+      <div className='screen-container'>
+        <Today />
+        <Forecast />
+        <Precipitation />
+      </div>
+    </WeatherContext.Provider>
+  );
 };
 
 export default Home;
