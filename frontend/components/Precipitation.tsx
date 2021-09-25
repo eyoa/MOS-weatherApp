@@ -1,4 +1,4 @@
-import { useWeather } from '../components/contexts/WeatherContext';
+import { useWeather } from './contexts/WeatherContext';
 
 export default function Precipitation() {
   const data = useWeather();
