@@ -1,7 +1,5 @@
 import { NextPage } from 'next';
-
 import { useWeather } from '../components/contexts/WeatherContext';
-
 import DailyTemp from '../components/DailyTemp';
 
 const weekdays = new Array('Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat');
