@@ -25,12 +25,31 @@ export async function getServerSideProps() {
 const Home: NextPage = ({ data }) => {
   return (
     <WeatherContext.Provider value={data}>
-      <h1>Landing</h1>
+      <div className={styles.wrap}>
+        <div className={styles.slider}>
+          <div className={styles.slide} id='landing'>
+            <h1>Landing</h1>
+          </div>
 
-      <div className='screen-container'>
-        <Today />
-        <Forecast />
-        <Precipitation />
+          <div className={styles.slide} id='Today'>
+            <Today />
+          </div>
+
+          <div className={styles.slide} id='Forecast'>
+            <Forecast />
+          </div>
+
+          <div className={styles.slide} id='Precipitation'>
+            <Precipitation />
+          </div>
+        </div>
+
+        <div className={styles.links}>
+          <a href='#landing'>O</a>
+          <a href='#Today'>O</a>
+          <a href='#Forecast'>O</a>
+          <a href='#Precipitation'>O</a>
+        </div>
       </div>
     </WeatherContext.Provider>
   );
