@@ -1,0 +1,20 @@
+.forecast_container {
+  width: 400px;
+  display: flex;
+}
+
+.forecast_days {
+  width: 50px;
+}
+
+.forecast_temp {
+  display: flex;
+  width: 350px;
+}
+
+.forecast_temp_bars {
+  height: 14px;
+  background-color: #000;
+  margin: 18px 14px;
+  border-radius: 10px;
+}
