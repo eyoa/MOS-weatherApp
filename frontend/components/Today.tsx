@@ -1,11 +1,12 @@
 import { useWeather } from '../components/contexts/WeatherContext';
+import styles from '../styles/Page.module.css';
 
 export default function Today() {
   const data = useWeather();
   console.log(`today page data is ${data}`);
   const daytemps = data.daily[0].temp;
   return (
-    <>
+    <div>
       <h1>Today</h1>
       <h3>
         {new Date(data.current.dt * 1000).toLocaleDateString('en-US', {
@@ -54,6 +55,6 @@ export default function Today() {
           </>
         );
       })}
-    </>
+    </div>
   );
 }
