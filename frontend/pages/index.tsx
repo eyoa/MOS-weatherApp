@@ -11,19 +11,35 @@ import { WeatherContext } from "../components/contexts/WeatherContext"
 const apiKey = process.env.NEXT_PUBLIC_API_KEY
 const defaultEndpoint = (lat, lon, apiKey) => `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${apiKey}&units=metric`
 
-async function fetchData (pos, setData) {
+async function fetchData (pos, setData, setDisplaySearchBar) {
   const {data} = await axios.get(defaultEndpoint(pos.coords.latitude, pos.coords.longitude, apiKey))
   setData(data)
+  Object.keys(data).length && setDisplaySearchBar(false)
+  console.log(data)
+}
+
+async function fetchDataFromCity(city, setData, setDisplaySearchBar) {
+  const {data: cityData} = await axios.get(`https://geocode.xyz/${city}?json=1`)
+  console.log(cityData)
+  const {data} = await axios.get(defaultEndpoint(cityData.latt, cityData.longt, apiKey))
+  setData(data)
+  Object.keys(data).length && setDisplaySearchBar(false)
   console.log(data)
 }
 
 const Home: NextPage = () => {
-  const [displaySearchbar, setDisplaySearchbar] = useState(false)
+  const [displaySearchbar, setDisplaySearchbar] = useState(true)
   const [data, setData] = useState({})
+  const [city, setCity] = useState('')
 
   useEffect ( () => {
-    navigator.geolocation.getCurrentPosition(pos=>fetchData(pos,setData), ()=>console.log('fail'))
+    navigator.geolocation.getCurrentPosition(pos=>fetchData(pos,setData, setDisplaySearchbar), ()=>console.log('fail'))
   },[])
+
+  function handleSearchClick() {
+    console.log(city)
+    fetchDataFromCity(city, setData, setDisplaySearchbar)
+  }
 
   return (
     <WeatherContext.Provider value={data}>
@@ -34,9 +50,12 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.wrap}>
           <div className={styles.slider}>
-            <div className={styles.slide} id='Landing'>
+            {displaySearchbar && <div className={styles.slide} id='Landing'>
               <h1>Landing</h1>
+              <input onChange={e=>setCity(e.target.value)}></input>
+              <button onClick={handleSearchClick}>search</button>
             </div>
+            }
             {Object.keys(data).length && <>
               <div className={styles.slide} id='Today'>
                 <Today />
