@@ -48,12 +48,20 @@ const Home: NextPage = ({ data }) => {
               <Precipitation />
             </div>
           </div>
+        </div>
 
-          <div className={styles.links}>
-            <a href='#Landing'>O</a>
-            <a href='#Today'>O</a>
-            <a href='#Forecast'>O</a>
-            <a href='#Precipitation'>O</a>
+        <div className={styles.links}>
+          <div>
+            <a href='#Landing'>Landing</a>
+          </div>
+          <div>
+            <a href='#Today'>Today</a>
+          </div>
+          <div>
+            <a href='#Forecast'>Forecast</a>
+          </div>
+          <div>
+            <a href='#Precipitation'>Precipitation</a>
           </div>
         </div>
       </div>
