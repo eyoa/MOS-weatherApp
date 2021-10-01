@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 
 import Today from '../components/Today';
 import Precipitation from '../components/Precipitation';
-import Forecast from './../components/Forecast';
+import Forecast from '../components/forecast/Forecast';
 import { WeatherContext } from '../components/contexts/WeatherContext';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -37,7 +37,6 @@ const Home: NextPage = ({ data }) => {
           <div>Last updated: 10:41AM</div>
           <h1>Location</h1>
         </div>
-
         <div className={styles.wrap}>
           <div className={styles.slider}>
             <div className={styles.slide} id='Landing'>
