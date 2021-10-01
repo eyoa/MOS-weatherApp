@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import { useState } from 'react';
 
 import styles from '../styles/Home.module.css';
 
@@ -22,6 +23,13 @@ export async function getServerSideProps() {
   };
 }
 const Home: NextPage = ({ data }) => {
+  const [radio, setRadio] = useState({ value: 'Landing' });
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setRadio({ value });
+  };
+
   return (
     <WeatherContext.Provider value={data}>
       <div className={styles.app}>
@@ -51,18 +59,54 @@ const Home: NextPage = ({ data }) => {
         </div>
 
         <div className={styles.links}>
-          <div>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab1'
+            value='Landing'
+            onChange={handleChange}
+            checked={radio.value === 'Landing'}
+          ></input>
+
+          <label for='tab1'>
             <a href='#Landing'>Landing</a>
-          </div>
-          <div>
+          </label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab2'
+            value='Today'
+            onChange={handleChange}
+            checked={radio.value === 'Today'}
+          ></input>
+
+          <label for='tab2'>
             <a href='#Today'>Today</a>
-          </div>
-          <div>
+          </label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab3'
+            value='Forecast'
+            onChange={handleChange}
+            checked={radio.value === 'Forecast'}
+          ></input>
+
+          <label for='tab3'>
             <a href='#Forecast'>Forecast</a>
-          </div>
-          <div>
+          </label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab4'
+            value='Precipitation'
+            onChange={handleChange}
+            checked={radio.value === 'Precipitation'}
+          ></input>
+
+          <label for='tab4'>
             <a href='#Precipitation'>Precipitation</a>
-          </div>
+          </label>
         </div>
       </div>
     </WeatherContext.Provider>
