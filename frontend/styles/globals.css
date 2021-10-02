@@ -1,9 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Work+Sans&display=swap');
+
 html,
 body {
+  --light-background: #ffffff;
+  --light-text: #4e4e4e;
+  --light-gradient-top: #f8e6a7;
+  --light-gradient-bottom: #ffffff;
+  --dark-gradient-top: #091011;
+  --dark-gradient-bottom: #769695;
+  --dark-text: #ffffff;
+
+  --lightblue: #dbf2f3;
+  --cold: #43c2e3;
+  --warm: #feda5a;
+  --hot: #fc7900;
+
+  --grey: #cbcbcb;
+
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Work Sans, sans-serif;
+
+  background-image: linear-gradient(
+    var(--light-gradient-top),
+    var(--light-gradient-bottom)
+  );
+  color: var(--light-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Poppins;
 }
 
 * {
