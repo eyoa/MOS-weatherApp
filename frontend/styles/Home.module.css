@@ -57,26 +57,16 @@
 .links > label {
   margin: 0.3em;
   padding: 1rem;
-  /* background-color: transparent; */
   cursor: pointer;
-  /* position: relative; */
+  color: gray;
 }
 
 .links > input {
   display: none;
 }
 
-.links > input:checked + label > a {
+.links > input:checked + label {
   background-color: lightsteelblue;
-}
-
-.links a {
-  background-color: transparent;
-  color: grey;
-  text-decoration: none;
-  position: relative;
-  padding: 1rem;
-  margin: -1rem;
 }
 
 .slider::-webkit-scrollbar {

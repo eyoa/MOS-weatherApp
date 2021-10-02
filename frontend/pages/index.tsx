@@ -28,6 +28,7 @@ const Home: NextPage = ({ data }) => {
   const handleChange = (event) => {
     const { value } = event.target;
     setRadio({ value });
+    window.location.hash = '#' + value;
   };
 
   return (
@@ -67,9 +68,7 @@ const Home: NextPage = ({ data }) => {
             checked={radio.value === 'Landing'}
           ></input>
 
-          <label for='tab1'>
-            <a href='#Landing'>Landing</a>
-          </label>
+          <label for='tab1'>Landing</label>
           <input
             type='radio'
             className='tabgroup'
@@ -79,9 +78,7 @@ const Home: NextPage = ({ data }) => {
             checked={radio.value === 'Today'}
           ></input>
 
-          <label for='tab2'>
-            <a href='#Today'>Today</a>
-          </label>
+          <label for='tab2'>Today</label>
           <input
             type='radio'
             className='tabgroup'
@@ -91,9 +88,7 @@ const Home: NextPage = ({ data }) => {
             checked={radio.value === 'Forecast'}
           ></input>
 
-          <label for='tab3'>
-            <a href='#Forecast'>Forecast</a>
-          </label>
+          <label for='tab3'>Forecast</label>
           <input
             type='radio'
             className='tabgroup'
@@ -103,9 +98,7 @@ const Home: NextPage = ({ data }) => {
             checked={radio.value === 'Precipitation'}
           ></input>
 
-          <label for='tab4'>
-            <a href='#Precipitation'>Precipitation</a>
-          </label>
+          <label for='tab4'>Precipitation</label>
         </div>
       </div>
     </WeatherContext.Provider>
