@@ -6,7 +6,7 @@ export default function Today() {
   console.log(`today page data is ${data}`);
   const daytemps = data.daily[0].temp;
   return (
-    <div>
+    <div className={styles.content}>
       <h1>Today</h1>
       <h3>
         {new Date(data.current.dt * 1000).toLocaleDateString('en-US', {

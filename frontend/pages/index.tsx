@@ -38,6 +38,13 @@ const Home: NextPage = () => {
   const [displaySearchbar, setDisplaySearchbar] = useState(true);
   const [data, setData] = useState({});
   const [city, setCity] = useState('');
+  const [radio, setRadio] = useState({ value: 'Landing' });
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setRadio({ value });
+    window.location.hash = '#' + value;
+  };
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -83,12 +90,49 @@ const Home: NextPage = () => {
               </>
             )}
           </div>
-          <div className={styles.links}>
-            <a href='#Landing'>O</a>
-            <a href='#Today'>O</a>
-            <a href='#Forecast'>O</a>
-            <a href='#Precipitation'>O</a>
-          </div>
+        </div>
+
+        <div className={styles.links}>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab1'
+            value='Landing'
+            onChange={handleChange}
+            checked={radio.value === 'Landing'}
+          ></input>
+
+          <label for='tab1'>Landing</label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab2'
+            value='Today'
+            onChange={handleChange}
+            checked={radio.value === 'Today'}
+          ></input>
+
+          <label for='tab2'>Today</label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab3'
+            value='Forecast'
+            onChange={handleChange}
+            checked={radio.value === 'Forecast'}
+          ></input>
+
+          <label for='tab3'>Forecast</label>
+          <input
+            type='radio'
+            className='tabgroup'
+            id='tab4'
+            value='Precipitation'
+            onChange={handleChange}
+            checked={radio.value === 'Precipitation'}
+          ></input>
+
+          <label for='tab4'>Precipitation</label>
         </div>
       </div>
     </WeatherContext.Provider>
