@@ -114,8 +114,8 @@ export default function Today() {
                   <Image
                     src={iconPath}
                     alt={data.current.weather[0].main}
-                    width={50}
-                    height={50}
+                    width={60}
+                    height={60}
                   ></Image>
                 </div>
 
