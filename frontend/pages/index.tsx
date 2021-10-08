@@ -10,7 +10,7 @@ import { WeatherContext } from '../components/contexts/WeatherContext';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const defaultEndpoint = (lat, lon, apiKey) =>
-  `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&appid=${apiKey}&units=metric`;
+  `http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${apiKey}&units=metric`;
 
 async function fetchData(pos, setData, setDisplaySearchBar) {
   const { data } = await axios.get(
@@ -18,7 +18,7 @@ async function fetchData(pos, setData, setDisplaySearchBar) {
   );
   setData(data);
   Object.keys(data).length && setDisplaySearchBar(false);
-  console.log(data);
+  // console.log(data);
 }
 
 async function fetchDataFromCity(city, setData, setDisplaySearchBar) {

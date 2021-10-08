@@ -12,7 +12,7 @@ export default function Today() {
     <div className={styles.content}>
       <div className={styles.currentBanner}>
         <div className={styles.pageTitle}>
-          <h2>Today</h2>
+          <h1>Today</h1>
 
           <div className={styles.date}>
             {new Date(data.current.dt * 1000).toLocaleDateString('en-US', {
@@ -96,26 +96,38 @@ export default function Today() {
           </tr>
         </tbody>
       </table>
-      {data.daily.map((day, index: number) => {
-        if (index > 2) return;
-        const date = new Date(day.dt * 1000).toLocaleDateString('en-US', {
-          weekday: 'short'
-        });
-        return (
-          <>
-            <h3>{date}</h3>
-            <div>{day.weather[0].main}</div>
-            <tr>
-              <td>Min</td>
-              <td>{day.temp.min}</td>
-            </tr>
-            <tr>
-              <td>Max</td>
-              <td>{day.temp.max}</td>
-            </tr>
-          </>
-        );
-      })}
+
+      <div className={styles.wrap}>
+        <div className={styles.slider}>
+          {data.daily.map((day, index: number) => {
+            if (index > 2) return;
+            const dayOfWeek = new Date(day.dt * 1000).toLocaleDateString(
+              'en-US',
+              {
+                weekday: 'short'
+              }
+            );
+            return (
+              <div className={styles.daySummary}>
+                <div className={styles.dayOfWeek}>{dayOfWeek}</div>
+                <div>
+                  <Image
+                    src={iconPath}
+                    alt={data.current.weather[0].main}
+                    width={50}
+                    height={50}
+                  ></Image>
+                </div>
+
+                <div className={styles.maxMinTemp}>
+                  <div>{Math.round(day.temp.min)}°</div>
+                  <div>{Math.round(day.temp.max)}°</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
