@@ -1,0 +1,101 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100vh;
+  padding: 2rem;
+}
+
+.currentBanner {
+  display: flex;
+  flex-direction: row;
+}
+
+.pageTitle {
+  z-index: 50;
+}
+
+.pageTitle h1 {
+  font-family: Work Sans;
+  margin: 0;
+  /* font-size: 1.8rem; */
+  font-weight: 900;
+}
+
+.date {
+  margin-top: 0.3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.currentTemp {
+  display: block;
+  font-family: Poppins;
+  height: 130px;
+}
+.currentTemp h3 {
+  font-size: 5.5rem;
+  font-weight: 900;
+  margin: 0;
+}
+.currentTemp h3 span {
+  font-size: 3rem;
+  font-weight: 900;
+  position: relative;
+  bottom: 30px;
+  right: 15px;
+}
+
+.icon {
+  z-index: 1;
+}
+
+.table {
+  width: 70%;
+  text-align: left;
+  border-collapse: collapse;
+  margin-left: 0.5rem;
+  font-family: Poppins;
+}
+
+.table td {
+  padding: 0.1rem, 1rem;
+}
+
+.slider {
+  display: flex;
+  flex-direction: row;
+}
+
+.daySummary {
+  height: 150px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: white;
+  text-align: center;
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.daySummary h3 {
+  margin: 0;
+}
+
+.dayOfWeek {
+  font-size: 1.1rem;
+  font-family: Poppins;
+  font-weight: 900;
+}
+
+.maxMinTemp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: Work Sans;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
