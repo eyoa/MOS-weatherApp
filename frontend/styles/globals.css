@@ -14,18 +14,12 @@ body {
   --cold: #43c2e3;
   --warm: #feda5a;
   --hot: #fc7900;
-
+  --today-mat: white;
   --grey: #cbcbcb;
 
   padding: 0;
   margin: 0;
   font-family: Work Sans, sans-serif;
-
-  background-image: linear-gradient(
-    var(--light-gradient-top),
-    var(--light-gradient-bottom)
-  );
-  color: var(--light-text);
 }
 
 h1,

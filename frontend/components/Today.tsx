@@ -1,5 +1,4 @@
 import { useWeather } from '../components/contexts/WeatherContext';
-// import styles from '../styles/Page.module.css';
 import styles from '../styles/Today.module.css';
 import Image from 'next/image';
 
@@ -8,6 +7,7 @@ export default function Today() {
   console.log(`today page data is ${data}`);
   const daytemps = data.daily[0].temp;
   const iconPath = `/` + data.current.weather[0].icon + `.png`;
+
   return (
     <div className={styles.content}>
       <div className={styles.currentBanner}>
@@ -108,7 +108,7 @@ export default function Today() {
               }
             );
             return (
-              <div className={styles.daySummary}>
+              <div className={`${styles.daySummary} `}>
                 <div className={styles.dayOfWeek}>{dayOfWeek}</div>
                 <div>
                   <Image
