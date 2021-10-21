@@ -62,9 +62,18 @@
   padding: 0.1rem, 1rem;
 }
 
+.slideContainer {
+  max-width: 450px;
+}
+.wrap {
+  overflow-x: scroll;
+  width: 100%;
+}
+
 .slider {
   display: flex;
   flex-direction: row;
+  width: 250%;
 }
 
 .daySummary {
@@ -98,4 +107,17 @@
   font-family: Work Sans;
   font-weight: 500;
   font-size: 1.1rem;
+}
+
+.wrap::-webkit-scrollbar {
+  width: 12px;
+}
+
+.wrap::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.wrap::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
