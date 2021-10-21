@@ -62,7 +62,6 @@
   padding: 0.1rem, 1rem;
 }
 
-<<<<<<< HEAD
 .slideContainer {
   max-width: 450px;
 }
@@ -75,11 +74,6 @@
   display: flex;
   flex-direction: row;
   width: 250%;
-=======
-.slider {
-  display: flex;
-  flex-direction: row;
->>>>>>> main
 }
 
 .daySummary {
@@ -114,7 +108,6 @@
   font-weight: 500;
   font-size: 1.1rem;
 }
-<<<<<<< HEAD
 
 .wrap::-webkit-scrollbar {
   width: 12px;
@@ -128,5 +121,3 @@
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
-=======
->>>>>>> main
