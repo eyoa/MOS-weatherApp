@@ -133,8 +133,8 @@ export default function Today() {
                   <div className={styles.dayOfWeek}>{dayOfWeek}</div>
                   <div>
                     <Image
-                      src={iconPath}
-                      alt={data.current.weather[0].main}
+                      src={`/` + day.weather[0].icon + `.png`}
+                      alt={day.weather[0].main}
                       width={60}
                       height={60}
                     ></Image>
