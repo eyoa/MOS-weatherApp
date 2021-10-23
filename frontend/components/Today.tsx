@@ -4,9 +4,29 @@ import Image from 'next/image';
 
 export default function Today() {
   const data = useWeather();
-  console.log(`today page data is ${data}`);
   const daytemps = data.daily[0].temp;
   const iconPath = `/` + data.current.weather[0].icon + `.png`;
+
+
+  const mornW = data.hourly.find((hourObj) => {
+    const hourTime = new Date(hourObj.dt * 1000).getHours();
+    if (hourTime === 8) return hourObj;
+  });
+
+  const noonW = data.hourly.find((hourObj) => {
+    const hourTime = new Date(hourObj.dt * 1000).getHours();
+    if (hourTime === 12) return hourObj;
+  });
+
+  const afternoonW = data.hourly.find((hourObj) => {
+    const hourTime = new Date(hourObj.dt * 1000).getHours();
+    if (hourTime === 16) return hourObj;
+  });
+
+  const eveW = data.hourly.find((hourObj) => {
+    const hourTime = new Date(hourObj.dt * 1000).getHours();
+    if (hourTime === 21) return hourObj;
+  });
 
   return (
     <div className={styles.content}>
@@ -44,7 +64,7 @@ export default function Today() {
             </td>
             <td>
               <Image
-                src={`/` + data.daily[0].weather[0].icon + `.png`}
+                src={`/` + mornW.weather[0].icon + `.png`}
                 alt={data.current.weather[0].main}
                 width={40}
                 height={40}
@@ -58,7 +78,7 @@ export default function Today() {
             </td>
             <td>
               <Image
-                src={`/` + data.daily[0].weather[0].icon + `.png`}
+                src={`/` + noonW.weather[0].icon + `.png`}
                 alt={data.current.weather[0].main}
                 width={40}
                 height={40}
@@ -72,7 +92,7 @@ export default function Today() {
             </td>
             <td>
               <Image
-                src={iconPath}
+                src={`/` + afternoonW.weather[0].icon + `.png`}
                 alt={data.current.weather[0].main}
                 width={40}
                 height={40}
@@ -86,7 +106,7 @@ export default function Today() {
             </td>
             <td>
               <Image
-                src={iconPath}
+                src={`/` + eveW.weather[0].icon + `.png`}
                 alt={data.current.weather[0].main}
                 width={40}
                 height={40}
@@ -96,36 +116,37 @@ export default function Today() {
           </tr>
         </tbody>
       </table>
+      <div className={styles.slideContainer}>
+        <div className={styles.wrap}>
+          <div className={styles.slider}>
+            {data.daily.map((day, index: number) => {
+              if (index === 0) return;
+              const dayOfWeek = new Date(day.dt * 1000).toLocaleDateString(
+                'en-US',
+                {
+                  weekday: 'short'
+                }
+              );
+              return (
+                <div className={styles.daySummary}>
+                  <div className={styles.dayOfWeek}>{dayOfWeek}</div>
+                  <div>
+                    <Image
+                      src={`/` + day.weather[0].icon + `.png`}
+                      alt={day.weather[0].main}
+                      width={60}
+                      height={60}
+                    ></Image>
+                  </div>
 
-      <div className={styles.wrap}>
-        <div className={styles.slider}>
-          {data.daily.map((day, index: number) => {
-            if (index > 2) return;
-            const dayOfWeek = new Date(day.dt * 1000).toLocaleDateString(
-              'en-US',
-              {
-                weekday: 'short'
-              }
-            );
-            return (
-              <div className={`${styles.daySummary} `}>
-                <div className={styles.dayOfWeek}>{dayOfWeek}</div>
-                <div>
-                  <Image
-                    src={iconPath}
-                    alt={data.current.weather[0].main}
-                    width={60}
-                    height={60}
-                  ></Image>
+                  <div className={styles.maxMinTemp}>
+                    <div>{Math.round(day.temp.min)}°</div>
+                    <div>{Math.round(day.temp.max)}°</div>
+                  </div>
                 </div>
-
-                <div className={styles.maxMinTemp}>
-                  <div>{Math.round(day.temp.min)}°</div>
-                  <div>{Math.round(day.temp.max)}°</div>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
