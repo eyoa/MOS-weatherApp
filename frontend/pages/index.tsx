@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import axios from 'axios';
+import { ThemeProvider } from 'styled-components';
 
 import Today from '../components/Today';
 import Precipitation from '../components/Precipitation';
@@ -18,10 +19,10 @@ async function fetchData(pos, setData, setDisplaySearchBar) {
   );
   setData(data);
   Object.keys(data).length && setDisplaySearchBar(false);
-  // console.log(data);
+  console.log(data);
 }
 
-async function fetchDataFromCity(city, setData, setDisplaySearchBar) {
+async function fetchDataFromCity(city, setData, setDisplaySearchBar, setTheme) {
   const { data: cityData } = await axios.get(
     `https://geocode.xyz/${city}?json=1`
   );
@@ -31,7 +32,16 @@ async function fetchDataFromCity(city, setData, setDisplaySearchBar) {
   );
   setData(data);
   Object.keys(data).length && setDisplaySearchBar(false);
-  console.log(data);
+
+  // adjust theme
+  const curTime = new Date(data.current.dt * 1000).getHours();
+  if (curTime >= 20 || curTime < 6) {
+    setTheme('dark');
+  } else if (data.current.clouds > 50) {
+    setTheme('cloudy');
+  } else {
+    setTheme('light');
+  }
 }
 
 const Home: NextPage = () => {
@@ -39,11 +49,18 @@ const Home: NextPage = () => {
   const [data, setData] = useState({});
   const [city, setCity] = useState('');
   const [radio, setRadio] = useState({ value: 'Landing' });
+  const [theme, setTheme] = useState('light');
 
   const handleChange = (event) => {
     const { value } = event.target;
     setRadio({ value });
     window.location.hash = '#' + value;
+  };
+
+  const themeObj = {
+    light: styles.lightTheme,
+    dark: styles.darkTheme,
+    cloudy: styles.cloudyTheme
   };
 
   useEffect(() => {
@@ -55,12 +72,12 @@ const Home: NextPage = () => {
 
   function handleSearchClick() {
     console.log(city);
-    fetchDataFromCity(city, setData, setDisplaySearchbar);
+    fetchDataFromCity(city, setData, setDisplaySearchbar, setTheme);
   }
 
   return (
     <WeatherContext.Provider value={data}>
-      <div className={styles.app}>
+      <div className={`${styles.app} ${themeObj[theme]}`}>
         <div className={styles.header}>
           <div>Last updated: 10:41AM</div>
           <h1>Location</h1>
