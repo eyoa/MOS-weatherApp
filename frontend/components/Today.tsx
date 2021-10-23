@@ -1,5 +1,4 @@
 import { useWeather } from '../components/contexts/WeatherContext';
-// import styles from '../styles/Page.module.css';
 import styles from '../styles/Today.module.css';
 import Image from 'next/image';
 
@@ -7,6 +6,7 @@ export default function Today() {
   const data = useWeather();
   const daytemps = data.daily[0].temp;
   const iconPath = `/` + data.current.weather[0].icon + `.png`;
+
 
   const mornW = data.hourly.find((hourObj) => {
     const hourTime = new Date(hourObj.dt * 1000).getHours();
@@ -116,7 +116,6 @@ export default function Today() {
           </tr>
         </tbody>
       </table>
-
       <div className={styles.slideContainer}>
         <div className={styles.wrap}>
           <div className={styles.slider}>
